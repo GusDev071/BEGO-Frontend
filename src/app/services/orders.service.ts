@@ -26,18 +26,4 @@ export class OrderService {
     );
   }
 
-  // Método para crear una nueva orden
-  createOrder(order: Order): Observable<Order> {
-    return this.http.post<Order>(this.apiUrl, order);
-  }
-
-  // Método para actualizar una orden existente
-  updateOrder(id: string, order: Partial<Order>): Observable<Order> {
-    return this.http.put<Order>(`${this.apiUrl}/${id}`, order);
-  }
-
-  // Método para eliminar una orden
-  deleteOrder(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
-  }
 }
