@@ -1,0 +1,253 @@
+/* General Styles */
+
+.orders-container {
+    font-family: 'Open Sans', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h2 {
+    font-weight: 600;
+    font-size: 20px;
+    color: white;
+}
+
+.search-bar {
+    max-width: 700px;
+    width: 100%;
+    color: white;
+}
+
+.search-bar input {
+    background-color: black;
+    color: white;
+    /* Cambia el color del texto ingresado a blanco */
+    border-radius: 15px;
+    border: 2px solid white;
+    -webkit-box-shadow: 3px 3px 5px 0px rgba(255, 255, 255, 1);
+    -moz-box-shadow: 3px 3px 5px 0px rgba(255, 255, 255, 1);
+    box-shadow: 3px 3px 5px 0px rgba(255, 255, 255, 1);
+}
+
+.search-bar input::placeholder {
+    color: white;
+    opacity: 0.7;
+    /* Mantén el placeholder translúcido */
+}
+
+.order-card {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-radius: 20px !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2) !important;
+    padding: 1.5rem !important;
+    color: white !important;
+    opacity: 0;
+    transform: scale(0.9);
+    animation: fadeInScale 0.6s ease-out forwards;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.order-card:hover {
+    transform: scale(1.02) !important;
+    /* Efecto de zoom al pasar el mouse */
+    box-shadow: 0 12px 40px rgba(218, 203, 5, 0.3) !important;
+    /* Sombra más pronunciada */
+}
+
+.order-card h5 {
+    font-weight: bold;
+    color: white;
+    font-size: 18px;
+}
+
+.order-destinations strong {
+    font-weight: 600;
+    color: white;
+}
+
+.order-destinations p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.order-destinations span {
+    font-size: 0.8rem;
+    color: white;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    color: black;
+    font-weight: bold;
+    border: none;
+    border-radius: 15px;
+}
+
+.btn-warning:hover {
+    background-color: black;
+    color: #ffc107;
+    border: 2px solid #ffc107;
+}
+
+.btn-sm {
+    font-size: 0.9rem;
+}
+
+span {
+    color: white;
+}
+
+
+/* General Styles */
+
+.status-circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+
+/* Alineación del estado y el círculo */
+
+.d-flex.align-items-center.ms-auto.text-end {
+    justify-content: flex-end;
+    /* Asegura que todo esté alineado a la derecha */
+}
+
+.status-circle {
+    margin-left: 8px;
+    /* Espacio entre el círculo y el texto */
+}
+
+
+/* Responsive Design */
+
+@media (max-width: 768px) {
+    .search-bar {
+        max-width: 90%;
+        /* Reduce el ancho del buscador en pantallas pequeñas */
+    }
+    .order-card {
+        max-width: 90%;
+        /* Reduce el ancho de las tarjetas en pantallas pequeñas */
+        padding: 1rem;
+    }
+    .order-destinations span {
+        font-size: 0.7rem;
+    }
+    .btn {
+        font-size: 0.8rem;
+    }
+    .ms-auto {
+        margin-left: auto;
+        /* Asegura que el botón "Resume" esté alineado a la derecha */
+    }
+    .d-flex.align-items-center.ms-auto.text-end {
+        justify-content: flex-end;
+        /* Mantiene la alineación a la derecha en pantallas pequeñas */
+    }
+    .status-circle {
+        margin-right: 8px;
+        /* Mantiene el espacio entre el círculo y el texto */
+    }
+}
+
+
+/* Animación de desvanecimiento y escalado para las tarjetas */
+
+@keyframes fadeInScale {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* Animación de desplazamiento lateral para los elementos internos */
+
+.order-card .d-flex {
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: slideIn 0.5s ease-out forwards;
+}
+
+.order-card .d-flex:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.order-card .d-flex:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.order-card .d-flex:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+/* Ajustes para el buscador */
+
+.search-bar input {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInDown 0.6s ease-out forwards;
+}
+
+
+/* Animación de desvanecimiento hacia abajo */
+
+@keyframes fadeInDown {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Animación para el título */
+
+h2 {
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInDown 0.6s ease-out forwards;
+    animation-delay: 0.2s;
+}
+
+#footer {
+    color: white;
+    font-size: 14px;
+    width: 100%;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInDown 0.6s ease-out forwards;
+    animation-delay: 0.2s;
+}
+
+#footer p {
+    margin: 0;
+    padding: 0 10px;
+}
+
+@media (max-width: 768px) {
+    #footer {
+        font-size: 12px;
+        padding: 10px 5px;
+    }
+}

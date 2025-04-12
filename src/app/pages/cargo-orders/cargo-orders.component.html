@@ -1,0 +1,77 @@
+<div class="container orders-container">
+    <h2 class="text-center my-4">Cargo Orders</h2>
+
+    <!-- Search Bar -->
+    <div class="mb-4 w-100 search-bar">
+        <input type="text" class="form-control" placeholder="Buscar por numero de orden... " [(ngModel)]="searchTerm" (input)="filterOrders()" />
+    </div>
+
+    <!-- Orders List -->
+    <div *ngFor="let order of filteredOrders" class="order-card p-3 mb-4 shadow-sm rounded">
+        <div class="d-flex">
+            <!-- Order Details -->
+            <div class="flex-grow-1">
+                <!-- Header -->
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-truck text-white me-2"></i>
+                        <h5 class="mb-0">Order #{{ order.order_number }}</h5>
+                    </div>
+                    <div class="d-flex align-items-center ms-auto text-end">
+                        <span class="d-flex align-items-center">
+              <span 
+                class="status-circle me-2" 
+                [ngStyle]="{ 'background-color': getStatusColor(order.status) }">
+              </span> {{ order.status_string }}
+                        </span>
+                        <span class="badge bg-secondary ms-3">{{ order.type }}</span>
+                    </div>
+                </div>
+
+                <!-- Destinations -->
+                <div class="order-destinations mb-3">
+                    <div class="mb-2 d-flex align-items-center">
+                        <i class="fas fa-box text-warning me-2"></i>
+                        <div>
+                            <strong>PICKUP</strong>
+                            <p class="mb-0">{{ order.destinations[0]?.address }}</p>
+                            <span class="text">{{ formatDate(order.destinations[0]?.start_date) }}</span>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-map-marker-alt text-danger me-2"></i>
+                        <div>
+                            <strong>DROP OFF</strong>
+                            <p class="mb-0">{{ order.destinations[1]?.address }}</p>
+                            <span class="text">{{ formatDate(order.destinations[1]?.start_date) }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="d-flex justify-content-between align-items-center">
+                    <!-- Start Pickup Timer or Navigate Button -->
+                    <div *ngIf="order.destinations[0]?.show_navigation" class="text-start flex-grow-1">
+                        <ng-container *ngIf="!canNavigate(order.start_date); else navigateButton">
+                            <span class="text-warning">
+                Start pickup in: {{ getTimeRemaining(order.start_date) }}
+              </span>
+                        </ng-container>
+                        <ng-template #navigateButton>
+                            <button class="btn btn-warning btn-sm px-4" (click)="navigate(order)">
+                Navigate
+              </button>
+                        </ng-template>
+                    </div>
+                    <!-- Resume Button -->
+                    <div class="ms-auto text-end">
+                        <button class="btn btn-warning btn-sm px-4" [routerLink]="['/cargo-details', order.order_number]">
+              Resume <i class="fas fa-eye"></i>
+            </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p id="footer" class="mb-0">&copy; 2025 Gustavo Flores Cadena. Todos los derechos reservados.</p>
+</div>

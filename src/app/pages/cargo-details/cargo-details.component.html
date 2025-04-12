@@ -1,0 +1,85 @@
+<div *ngIf="orderData" class="container cargo-details-container py-4">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <button class="btn btn-link text-white" [routerLink]="['/cargo-orders']">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <h2 class="text-center mb-0">Cargo Details</h2>
+        <button class="btn btn-link text-white">
+            <i class="fa-solid fa-bell"></i>
+        </button>
+    </div>
+
+    <!-- Order Info -->
+    <div class="order-info-card p-4 mb-4 fade-in">
+        <h5 class="mb-3">Referencia {{ orderData.reference_number }}</h5>
+        <h4 class="text-warning mb-4">Order #{{ orderData.order_number }}</h4>
+        <div class="d-flex justify-content-between align-items-center">
+            <!-- Pickup Info -->
+            <div class="pickup-info text-center fade-in" (click)="togglePickupDropoff()">
+                <div class="icon-circle bg-warning mb-2" style="cursor: pointer;">
+                    <i class="fa-solid fa-truck text-dark"></i>
+                </div>
+                <strong class="d-block">PICKUP</strong>
+                <p class="text-muted mb-0">{{ orderData.destinations[0]?.address }}</p>
+                <span class="text-muted">{{ orderData.destinations[0]?.startDate | date:'short' }}</span>
+            </div>
+            <div class="line-separator"></div>
+            <!-- Dropoff Info -->
+            <div class="dropoff-info text-center fade-in" (click)="togglePickupDropoff()">
+                <div class="icon-circle bg-warning mb-2" style="cursor: pointer;">
+                    <i class="fa-solid fa-location-dot text-dark"></i>
+                </div>
+                <strong class="d-block">DROP OFF</strong>
+                <p class="text-muted mb-0">{{ orderData.destinations[1]?.address }}</p>
+                <span class="text-muted">{{ orderData.destinations[1]?.startDate | date:'short' }}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="timeline-card p-4 mb-4 text-center fade-in">
+        <div class="driver-info mb-4">
+            <ng-container *ngIf="orderData.driver?.thumbnail && orderData.driver.thumbnail !== ''; else defaultIcon">
+                <img [src]="orderData.driver.thumbnail" alt="Driver" class="driver-thumbnail rounded-circle">
+            </ng-container>
+            <ng-template #defaultIcon>
+                <i class="fa-solid fa-circle-user fa-7x"></i>
+            </ng-template>
+            <h5 class="text-white mt-2">{{ orderData.start_date | date:'shortTime' }}</h5>
+        </div>
+        <ul class="timeline">
+            <li *ngFor="let status of (showPickup ? orderData.status_list.pickup : orderData.status_list.dropoff); let last = last" [class.completed]="status.active">
+                <div class="timeline-dot">
+                    <i *ngIf="status.active" class="fa-solid fa-check text-dark"></i>
+                </div>
+                <div class="timeline-line" *ngIf="!last"></div>
+                <div class="status-text">
+                    <h6 [class.text-muted]="!status.active" [class.text-white]="status.active">{{ status.status }}</h6>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!-- Pickup Data -->
+    <div class="pickup-data-card p-4">
+        <h5 class="text-white" (click)="togglePanel()" style="cursor: pointer;">
+            {{ showPickup ? 'Pickup Data' : 'Dropoff Data' }}
+            <i [class]="isPanelExpanded ? 'fas fa-chevron-up' : 'fas fa-chevron-down'"></i>
+        </h5>
+        <div *ngIf="isPanelExpanded">
+            <p class="text-muted mb-0">
+                {{ showPickup ? orderData.destinations[0]?.address : orderData.destinations[1]?.address }}
+            </p>
+            <p class="text-muted">
+                {{ showPickup ? (orderData.destinations[0]?.startDate | date:'fullDate') : (orderData.destinations[1]?.startDate | date:'fullDate') }}
+            </p>
+            <p class="text-muted">
+                {{ showPickup ? orderData.destinations[0]?.contact_info?.telephone : orderData.destinations[1]?.contact_info?.telephone }}
+            </p>
+            <p class="text-muted">
+                {{ showPickup ? orderData.destinations[0]?.contact_info?.email : orderData.destinations[1]?.contact_info?.email }}
+            </p>
+        </div>
+    </div>
+    <p id="footer" class="mb-0">&copy; 2025 Gustavo Flores Cadena. Todos los derechos reservados.</p>
+</div>

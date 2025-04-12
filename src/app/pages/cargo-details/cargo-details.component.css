@@ -1,0 +1,323 @@
+.cargo-details-container {
+    font-family: 'Open Sans', sans-serif;
+    color: white;
+}
+
+h2 {
+    font-weight: 600;
+    font-size: 20px;
+    color: white;
+}
+
+
+/* Estilo para las tarjetas con efecto cristal */
+
+.order-info-card,
+.timeline-card,
+.pickup-data-card {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    color: white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.order-info-card:hover,
+.timeline-card:hover,
+.pickup-data-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 40px rgba(218, 203, 5, 0.3);
+}
+
+
+/* Ajustes para los textos dentro de las tarjetas */
+
+.order-info-card h5,
+.timeline-card h5,
+.pickup-data-card h5 {
+    font-weight: 600;
+    font-size: 16px;
+    color: white;
+}
+
+.order-info-card p,
+.timeline-card p,
+.pickup-data-card p {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    /* Texto ligeramente translúcido */
+}
+
+.order-info-card strong {
+    font-weight: 600;
+    color: white;
+}
+
+.order-info-card h5 {
+    font-weight: 500;
+    font-style: normal;
+    color: white;
+    font-size: 15px;
+}
+
+.icon-circle {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+
+.bg-warning {
+    background-color: #ffc107 !important;
+}
+
+.line-separator {
+    width: 2px;
+    height: 80px;
+    background-color: #444;
+    margin: 0 20px;
+}
+
+.icon-circle {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+
+.line-separator {
+    width: 2px;
+    height: 80px;
+    background-color: #444;
+    margin: 0 20px;
+}
+
+.timeline {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    position: relative;
+}
+
+.timeline li {
+    position: relative;
+    padding-left: 30px;
+    /* Espacio para el círculo y la línea */
+    margin-bottom: 20px;
+}
+
+.timeline li:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-dot {
+    width: 20px;
+    height: 20px;
+    background-color: #ccc;
+    /* Gris para pendientes */
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.timeline-line {
+    position: absolute;
+    width: 3px;
+    background-color: #ccc;
+    /* Gris para pendientes */
+    top: 20px;
+    /* Empieza justo debajo del círculo */
+    bottom: -20px;
+    /* Conecta con el siguiente círculo */
+    left: 9px;
+    /* Centra la línea con el círculo */
+    z-index: 0;
+}
+
+.timeline li.completed .timeline-dot {
+    background-color: #ffc107;
+    /* Amarillo para completados */
+}
+
+.timeline li.completed .timeline-line {
+    background-color: #ffc107;
+    /* Línea amarilla para completados */
+}
+
+.status-text {
+    margin-left: 30px;
+    font-size: 14px;
+    color: #fff;
+}
+
+.text-muted {
+    color: #888 !important;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 300;
+}
+
+.text-white {
+    color: #fff !important;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+}
+
+.track-order-btn {
+    background-color: #ffc107;
+    color: #000;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+}
+
+.track-order-btn:disabled {
+    background-color: #444;
+    color: #888;
+}
+
+.pickup-info,
+.dropoff-info {
+    flex: 1;
+}
+
+.text-muted {
+    color: #b0b0b0 !important;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.timeline li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.timeline li .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: gray;
+    margin-right: 1rem;
+}
+
+.timeline li.completed .dot {
+    background-color: yellow;
+}
+
+.pickup-data-card h5 {
+    cursor: pointer;
+}
+
+.no-data-message {
+    margin-top: 50px;
+    padding: 20px;
+}
+
+.no-data-message h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.no-data-message h2 {
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.pickup-data-card h5 {
+    font-weight: 500;
+    font-style: normal;
+    color: white;
+    font-size: 15px;
+}
+
+
+/* Animación de desvanecimiento y desplazamiento */
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Animación para el timeline */
+
+.timeline li {
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: slideIn 0.5s ease-out forwards;
+}
+
+.timeline li:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.timeline li:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.timeline li:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+.timeline li:nth-child(4) {
+    animation-delay: 0.8s;
+}
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+#footer {
+    color: white;
+    font-size: 14px;
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#footer p {
+    margin: 0;
+    padding: 0 10px;
+}
+
+@media (max-width: 768px) {
+    #footer {
+        font-size: 12px;
+        padding: 10px 5px;
+    }
+}
